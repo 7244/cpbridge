@@ -1,0 +1,15 @@
+communication platform bridge
+
+bridges messages between platforms like discord<->telegram
+
+currently only discord and telegram supported
+
+files in messages and other unique stuff is not supported yet
+
+language: gnuc99
+
+TODO:
+json parsing is too long and ugly, code is overall ugly and long
+message send order to discord is broken (its even broken in their own discord client xd)
+implement replying messages
+implement files in messages
