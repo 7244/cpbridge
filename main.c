@@ -111,6 +111,9 @@ typedef struct{
 
 #define BLL_set_prefix MessageList
 #define BLL_set_NodeDataType Message_t
+#define BLL_set_Language 0
+/* TODO use witch constant */
+#define BLL_set_UseUninitialisedValues 0
 #include <WITCH/BLL/BLL.h>
 
 MessageList_t MessageList;
@@ -129,6 +132,9 @@ typedef enum{
 
 #define BLL_set_prefix CP_Telegram_Listen_PacketTypeList
 #define BLL_set_NodeDataType CP_Telegram_Listen_PacketType
+#define BLL_set_Language 0
+/* TODO use witch constant */
+#define BLL_set_UseUninitialisedValues 0
 #include <WITCH/BLL/BLL.h>
 
 typedef struct{
@@ -147,6 +153,9 @@ typedef enum{
 
 #define BLL_set_prefix CP_Telegram_Send_PacketTypeList
 #define BLL_set_NodeDataType CP_Telegram_Send_PacketType
+#define BLL_set_Language 0
+/* TODO use witch constant */
+#define BLL_set_UseUninitialisedValues 0
 #include <WITCH/BLL/BLL.h>
 
 typedef struct{
@@ -168,6 +177,9 @@ typedef enum{
 
 #define BLL_set_prefix CP_Discord_Listen_PacketTypeList
 #define BLL_set_NodeDataType CP_Discord_Listen_PacketType
+#define BLL_set_Language 0
+/* TODO use witch constant */
+#define BLL_set_UseUninitialisedValues 0
 #include <WITCH/BLL/BLL.h>
 
 typedef struct{
@@ -196,6 +208,9 @@ typedef enum{
 
 #define BLL_set_prefix CP_Discord_Send_PacketTypeList
 #define BLL_set_NodeDataType CP_Discord_Send_PacketType
+#define BLL_set_Language 0
+/* TODO use witch constant */
+#define BLL_set_UseUninitialisedValues 0
 #include <WITCH/BLL/BLL.h>
 
 typedef struct{
@@ -438,7 +453,7 @@ void CP_Telegram_Send_SendMessage(const Message_t *Message){
   NET_TCP_write_loop(
     pile.CP_Telegram_Send.peer,
     NET_TCP_GetWriteQueuerReferenceFirst(pile.CP_Telegram_Send.peer),
-    NET_TCP_QueueType_DynamicPointer_e,
+    NET_TCP_QueueType_DynamicPointer,
     &Queue);
 
   VEC_free(&buf);
@@ -548,7 +563,7 @@ void CP_Discord_Send_SendMessage(const Message_t *Message){
   NET_TCP_write_loop(
     pile.CP_Discord_Send.peer,
     NET_TCP_GetWriteQueuerReferenceFirst(pile.CP_Discord_Send.peer),
-    NET_TCP_QueueType_DynamicPointer_e,
+    NET_TCP_QueueType_DynamicPointer,
     &Queue);
 
   VEC_free(&buf);
@@ -747,7 +762,7 @@ void CP_Telegram_Listen_GetUpdate(){
   NET_TCP_write_loop(
     pile.CP_Telegram_Listen.peer,
     NET_TCP_GetWriteQueuerReferenceFirst(pile.CP_Telegram_Listen.peer),
-    NET_TCP_QueueType_DynamicPointer_e,
+    NET_TCP_QueueType_DynamicPointer,
     &Queue);
 
   VEC_free(&buf);
