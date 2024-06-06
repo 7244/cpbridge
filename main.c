@@ -112,9 +112,7 @@ typedef struct{
 #define BLL_set_prefix MessageList
 #define BLL_set_NodeDataType Message_t
 #define BLL_set_Language 0
-/* TODO use witch constant */
-#define BLL_set_UseUninitialisedValues 0
-#include <WITCH/BLL/BLL.h>
+#include <BLL/BLL.h>
 
 MessageList_t MessageList;
 
@@ -133,9 +131,7 @@ typedef enum{
 #define BLL_set_prefix CP_Telegram_Listen_PacketTypeList
 #define BLL_set_NodeDataType CP_Telegram_Listen_PacketType
 #define BLL_set_Language 0
-/* TODO use witch constant */
-#define BLL_set_UseUninitialisedValues 0
-#include <WITCH/BLL/BLL.h>
+#include <BLL/BLL.h>
 
 typedef struct{
   hpall_t hpall; // open
@@ -154,9 +150,7 @@ typedef enum{
 #define BLL_set_prefix CP_Telegram_Send_PacketTypeList
 #define BLL_set_NodeDataType CP_Telegram_Send_PacketType
 #define BLL_set_Language 0
-/* TODO use witch constant */
-#define BLL_set_UseUninitialisedValues 0
-#include <WITCH/BLL/BLL.h>
+#include <BLL/BLL.h>
 
 typedef struct{
   EV_timer_t KeepAliveTimer;
@@ -178,9 +172,7 @@ typedef enum{
 #define BLL_set_prefix CP_Discord_Listen_PacketTypeList
 #define BLL_set_NodeDataType CP_Discord_Listen_PacketType
 #define BLL_set_Language 0
-/* TODO use witch constant */
-#define BLL_set_UseUninitialisedValues 0
-#include <WITCH/BLL/BLL.h>
+#include <BLL/BLL.h>
 
 typedef struct{
   bool Upgraded; // false
@@ -209,9 +201,7 @@ typedef enum{
 #define BLL_set_prefix CP_Discord_Send_PacketTypeList
 #define BLL_set_NodeDataType CP_Discord_Send_PacketType
 #define BLL_set_Language 0
-/* TODO use witch constant */
-#define BLL_set_UseUninitialisedValues 0
-#include <WITCH/BLL/BLL.h>
+#include <BLL/BLL.h>
 
 typedef struct{
   EV_timer_t KeepAliveTimer;
@@ -461,7 +451,7 @@ void CP_Telegram_Send_SendMessage(const Message_t *Message){
 
 void BroadcastMessages_Telegram(){
   MessageList_NodeReference_t *mnr = &CPMessageAt[CPType_Telegram].Sent;
-  while(MessageList_IsNodeReferenceEqual(*mnr, MessageList.dst) == false){
+  while(MessageList_inre(*mnr, MessageList.dst) == false){
     MessageList_Node_t *mn = MessageList_GetNodeByReference(&MessageList, *mnr);
     if(mn->data.CPFrom != CPType_Telegram){
       CP_Telegram_Send_SendMessage(&mn->data);
@@ -571,7 +561,7 @@ void CP_Discord_Send_SendMessage(const Message_t *Message){
 
 void BroadcastMessages_Discord(){
   MessageList_NodeReference_t *mnr = &CPMessageAt[CPType_Discord].Sent;
-  while(MessageList_IsNodeReferenceEqual(*mnr, MessageList.dst) == false){
+  while(MessageList_inre(*mnr, MessageList.dst) == false){
     MessageList_Node_t *mn = MessageList_GetNodeByReference(&MessageList, *mnr);
     if(mn->data.CPFrom != CPType_Discord){
       CP_Discord_Send_SendMessage(&mn->data);
